@@ -5,43 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Interface</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        #chat { margin-top: 20px; }
-        #response { margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #response {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
 
-<h1>Chat Interface</h1>
-<label for="userInput">Enter your message:</label>
-<input type="text" id="userInput" placeholder="Type a message...">
-<button id="sendButton">Send</button>
+    <h1>Chat with Langflow API</h1>
+    <input type="text" id="userInput" placeholder="Type your message here" />
+    <button id="sendButton">Send</button>
 
-<div id="response"></div>
+    <div id="response"></div>
 
-<script>
-    document.getElementById('sendButton').addEventListener('click', async () => {
-        const userInput = document.getElementById('userInput').value;
-        
-        // Replace 'YOUR_API_URL' with your actual API URL
-        const apiUrl = 'YOUR_API_URL'; 
-
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: userInput })
-            });
-
-            const data = await response.json();
-            document.getElementById('response').innerText = 'Response: ' + JSON.stringify(data);
-        } catch (error) {
-            document.getElementById('response').innerText = 'Error: ' + error.message;
-        }
-    });
-</script>
-
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
