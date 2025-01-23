@@ -7,31 +7,21 @@ document.getElementById('sendButton').addEventListener('click', async () => {
 
     try {
         const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Adjust if necessary
-            },
-            body: JSON.stringify({
-                input_value: userInput,
-                output_type: "chat",
-                input_type: "chat",
-                tweaks: {
-                    "ChatInput-WZoDb": {},
-                    "SplitText-EbhLQ": {},
-                    "OpenAIModel-G3Q1d": {},
-                    "ChatOutput-BKzc9": {},
-                    "OpenAIEmbeddings-7Bv96": {},
-                    "AstraDB-MRdOZ": {},
-                    "File-mL4eR": {},
-                    "MessagetoData-DC7Io": {},
-                    "ParseData-oq78N": {},
-                    "Prompt-ydmGp": {},
-                    "Agent-nmWL0": {},
-                    "APIRequest-hTK2E": {}
-                }
-            })
-        });
+    method: 'POST',
+    mode: 'no-cors', // This will prevent CORS errors
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+        input_value: userInput,
+        output_type: "chat",
+        input_type: "chat",
+        tweaks: {
+            // Your tweaks here
+        }
+    })
+});
 
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
