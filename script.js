@@ -2,7 +2,7 @@ document.getElementById('sendButton').addEventListener('click', async () => {
     const userInput = document.getElementById('userInput').value;
 
     // Replace with your actual API URL
-    const apiUrl = 'https://api.langflow.astra.datastax.com/lf/f72baf0d-27f0-4618-84a5-d44227dc2944/api/v1/run/testRagLearn?stream=false'; 
+    const apiUrl = 'https://cors-anywhere.herokuapp.com/https://api.langflow.astra.datastax.com/lf/f72baf0d-27f0-4618-84a5-d44227dc2944/api/v1/run/testRagLearn?stream=false';
     const token = 'AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05'; // Replace with your actual token
 
     try {
