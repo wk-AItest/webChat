@@ -6,8 +6,8 @@
     <title>API Test</title>
     <script>
         async function makeApiRequest() {
-        const url = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.langflow.astra.datastax.com/lf/f72baf0d-27f0-4618-84a5-d44227dc2944/api/v1/run/testRagLearn?stream=false");
-        const applicationToken = "AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05";
+    const url = "https://api.langflow.astra.datastax.com/lf/f72baf0d-27f0-4618-84a5-d44227dc2944/api/v1/run/testRagLearn?stream=false";
+    const applicationToken = "AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05";
 
     const body = {
         input_value: "Hello, how are you?",
@@ -20,29 +20,19 @@
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${applicationToken}`,
+                'Authorization': `Bearer ${applicationToken}`, // Ensure this is correct
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
         });
 
-        // Check if the response is OK
         if (!response.ok) {
             const errorText = await response.text(); // Get the error message as text
+            console.error('Error:', errorText);
             throw new Error(`${response.status} ${response.statusText} - ${errorText}`);
         }
 
-        // Check if the response is JSON
-        const contentType = response.headers.get("Content-Type");
-        let responseData;
-
-        if (contentType && contentType.includes("application/json")) {
-            responseData = await response.json(); // Parse as JSON only if it's JSON
-        } else {
-            const responseText = await response.text(); // Otherwise, get it as text
-            throw new Error(`Expected JSON but received: ${responseText}`);
-        }
-
+        const responseData = await response.json();
         console.log('Response:', responseData);
         document.getElementById('response').innerText = JSON.stringify(responseData, null, 2);
     } catch (error) {
