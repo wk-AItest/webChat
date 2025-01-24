@@ -3,15 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langflow API Client</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>API Test</title>
+    <script>
+        async function makeApiRequest() {
+            const url = "https://api.langflow.astra.datastax.com/lf/f72baf0d-27f0-4618-84a5-d44227dc2944/api/v1/run/testRagLearn?stream=false";
+            const applicationToken = "AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05";
+
+            const body = {
+                input_value: "Hello, how are you?",
+                input_type: "chat",
+                output_type: "chat",
+                tweaks: {}
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${applicationToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const responseData = await response.json();
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText} - ${JSON.stringify(responseData)}`);
+                }
+
+                console.log('Response:', responseData);
+                document.getElementById('response').innerText = JSON.stringify(responseData, null, 2);
+            } catch (error) {
+                console.error('Error:', error.message);
+                document.getElementById('response').innerText = 'Error: ' + error.message;
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Langflow API Client</h1>
-    <input type="text" id="userInput" placeholder="Enter your message" />
-    <button id="sendButton">Send</button>
-    <div id="response"></div>
+    <h1>API Test</h1>
+    <button id="sendButton">Send API Request</button>
+    <pre id="response"></pre>
 
-    <script src="langflowClient.js"></script>
+    <script>
+        document.getElementById('sendButton').addEventListener('click', makeApiRequest);
+    </script>
 </body>
 </html>
