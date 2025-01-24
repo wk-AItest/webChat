@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langflow API Example2</title>
+    <title>Langflow API Example</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,11 +14,13 @@
             border: 1px solid #ccc;
             padding: 10px;
             background-color: #f9f9f9;
+            white-space: pre-wrap; /* Preserve whitespace */
+            overflow-wrap: break-word; /* Break long words */
         }
     </style>
 </head>
 <body>
-    <h1>Langflow API Example2</h1>
+    <h1>Langflow API Example</h1>
     <textarea id="inputValue" rows="4" cols="50" placeholder="Enter your message here..."></textarea>
     <br>
     <label>
@@ -32,10 +34,11 @@
     <script>
         document.getElementById('sendRequest').addEventListener('click', () => {
             const myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer YOUR_SECURE_TOKEN"); // Use a secure method to handle tokens
+            myHeaders.append("Authorization", "Bearer AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05");
             myHeaders.append("Content-Type", "application/json");
 
-            const inputValue = document.getElementById('inputValue').value; // Get the user input
+            const inputValue = document.getElementById('inputValue').value || "Hello, how are you?"; // Use textarea input or default message
+
             const raw = JSON.stringify({
                 "input_value": inputValue,
                 "input_type": "chat",
@@ -55,11 +58,11 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
-                    return response.json(); // Expect a JSON response
+                    return response.text(); // Change to response.json() if expecting JSON
                 })
                 .then((result) => {
                     console.log(result);
-                    document.getElementById('response').innerText = JSON.stringify(result, null, 2); // Display the result
+                    document.getElementById('response').innerText = result; // Display response
                 })
                 .catch((error) => {
                     console.error('Error:', error);
