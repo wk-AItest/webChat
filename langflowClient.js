@@ -8,10 +8,19 @@ class LangflowClient {
         headers["Authorization"] = `Bearer ${this.applicationToken}`;
         const url = `${this.baseURL}${endpoint}`;
         try {
-            const response = await fetch(url, {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
-                headers: headers,
-                body: JSON.stringify(body)
+                mode: 'no-cors', // Use this only for testing
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${applicationToken}`
+                },
+                body: JSON.stringify({
+                    input_value: userInput,
+                    input_type: 'chat',
+                    output_type: 'chat',
+                    tweaks: {}
+                })
             });
 
             const responseMessage = await response.json();
