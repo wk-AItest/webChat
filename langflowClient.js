@@ -73,7 +73,7 @@ document.getElementById('sendButton').addEventListener('click', async () => {
     const userInput = document.getElementById('userInput').value;
     const flowIdOrName = 'testRagLearn'; // Flow ID
     const langflowId = 'f72baf0d-27f0-4618-84a5-d44227dc2944'; // Langflow ID
-    const applicationToken = 'AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05'; // Replace with your actual token
+    const applicationToken = '<AstraCS:eeDdJjUEdQoWflgHGBUavEcN:3892f32bf153f2dd092ffc5142e6cbe6b278391264484ec9209156308a3b0b05>'; // Replace with your actual token
     const langflowClient = new LangflowClient('https://api.langflow.astra.datastax.com', applicationToken);
 
     try {
