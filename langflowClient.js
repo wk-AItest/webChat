@@ -8,19 +8,10 @@ class LangflowClient {
         headers["Authorization"] = `Bearer ${this.applicationToken}`;
         const url = `${this.baseURL}${endpoint}`;
         try {
-            const response = await fetch(apiUrl, {
+            const response = await fetch(url, {
                 method: 'POST',
-                mode: 'no-cors', // Use this only for testing
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${applicationToken}`
-                },
-                body: JSON.stringify({
-                    input_value: userInput,
-                    input_type: 'chat',
-                    output_type: 'chat',
-                    tweaks: {}
-                })
+                headers: headers,
+                body: JSON.stringify(body)
             });
 
             const responseMessage = await response.json();
@@ -78,6 +69,7 @@ class LangflowClient {
     }
 }
 
+// Event listener for the send button
 document.getElementById('sendButton').addEventListener('click', async () => {
     const userInput = document.getElementById('userInput').value;
     const flowIdOrName = 'testRagLearn'; // Flow ID
