@@ -18,14 +18,14 @@
     </style>
 </head>
 <body>
-    <h1>Download a Sample GIF</h1>
+    <h1>Download Round18.gif</h1>
     <button id="downloadButton">Download GIF</button>
 
     <script>
         document.getElementById('downloadButton').addEventListener('click', function() {
             const link = document.createElement('a');
-            link.href = 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGtqcTJwOTN5amk5YjRzZTh0M29wb2p6bmdwcmxkMHZ2Zzhjemd5ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UrEQirmnMPxBwToULv/giphy.gif'; // Replace with the URL of your GIF
-            link.download = 'sample.gif'; // Name for the downloaded file
+            link.href = 'Round18.gif'; // This should match the filename in the same directory
+            link.download = 'Round18.gif'; // Name for the downloaded file
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
